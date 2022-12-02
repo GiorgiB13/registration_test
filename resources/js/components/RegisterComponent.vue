@@ -65,9 +65,6 @@ export default {
     vuetify,
     data: () => ({
         countries: countriesData,
-        //can be done dynamically
-        israeliFormat: '+XXX XX XXX-XX-XX',
-        prefix: 972,
         valid: true,
         name: '',
         nameRules: [
@@ -92,6 +89,7 @@ export default {
     }),
     watch: {
         number: function () {
+            //can be done dynamically just doing Israeli format here :)
             this.number = this.number.replace(/[^0-9]/g, "")
                 .replace(/^(\d{2})(\d{3})(\d{2})(\d{2})/g, '$1 $2-$3-$4')
                 .substring(0, 12);
@@ -111,6 +109,7 @@ export default {
                 email: this.email
             }).then((response) => {
                 alert(response.data.message);
+                this.reset();
             }).catch((error) => {
                 if (error.response.status === 422) {
                     alert(error.response.data.message, 'danger');

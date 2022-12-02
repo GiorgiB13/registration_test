@@ -3271,9 +3271,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       countries: _data_countries_countries_json__WEBPACK_IMPORTED_MODULE_1__,
-      //can be done dynamically
-      israeliFormat: '+XXX XX XXX-XX-XX',
-      prefix: 972,
       valid: true,
       name: '',
       nameRules: [function (v) {
@@ -3302,6 +3299,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     number: function number() {
+      //can be done dynamically just doing Israeli format here :)
       this.number = this.number.replace(/[^0-9]/g, "").replace(/^(\d{2})(\d{3})(\d{2})(\d{2})/g, '$1 $2-$3-$4').substring(0, 12);
     },
     select: function select() {
@@ -3323,6 +3321,7 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email
       }).then(function (response) {
         alert(response.data.message);
+        _this2.reset();
       })["catch"](function (error) {
         if (error.response.status === 422) {
           alert(error.response.data.message, 'danger');
